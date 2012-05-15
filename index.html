@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test de la video</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link href="style.css" rel="stylesheet" type="text/css">
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+</head>
+<body class="container">
+
+	<header>
+		<h1>HTML 5 - Vidéo</h1>
+	</header>
+	<article class="content">
+		<section class="part">
+			<video id="video" height="200" width="345" poster="http://www.rob-coenen.nl/blog/wp-content/uploads/2011/01/html5-frame-accuracy.jpg" preload="auto" height="540">
+				<source src="video.mp4" type="video/mp4" />
+				<source src="video.ogv" type="video/ogg" />
+				Votre navigateur ne supporte pas la vidéo. 
+			</video>
+			
+			<br />
+			<meter id="timeline" type="range" value="0" min="0" max="100">
+				L'attribut html 5 <code>&lt;meter&gt;&lt;/meter&gt;</code> n'est pas compaptible avec ce navigateur.
+			</meter>
+			<div style="font-size:12px;margin-top:50px">			
+				Vitesse : x<span id="vitesse">1</span><br>
+				Pause : <span id="pause">0</span>sec.
+			</div>
+			<div class="podBouton">
+				<button class="yellow" onClick="getElementById('video').play()">Play</button>
+				<button class="red" onClick="getElementById('video').pause()">Pause</button>
+				<button class="redF" onClick="getElementById('video').currentTime=0;getElementById('video').pause();">Stop</button>
+			</div>
+			<div class="podBouton">
+				<button class="green" onClick="faster()">+50%</button>
+				<button class="green" onClick="defaultSpeed()">Vitesse pas défaut</button>
+				<button class="green" onClick="slower()">-50%</button>
+			</div>
+			<div class="podBouton">
+				<button id="mark">Marque-page</button>
+				<button id="instant" style="display:none" onClick="getMark()">Mark 1</button>
+			</div>
+		</section>
+		<section id="log">
+		</section>
+	</article>
+	<footer> </footer>
+	<script src="script.js"></script>
+</body>
+</html>
