@@ -56,29 +56,27 @@ function getMark() {
 $(function() {
 
 	var video = document.getElementById("video");
-	
-	
 	//initialisation de la vitesse (pas automatiquement sur Firefox12)
 	video.playbackRate = 1;
 	
-	/* chargement de la video : uniquement dans FF */
+	/* chargement de la video : uniquement FF */
 	video.addEventListener("load", function() {
 		$("#log").append("Chargement de la vidéo...<br />");
 	});
 	
-	/* lancement de lecture de la vidéo */ 
+	/* lecture */ 
 	video.addEventListener("play", function() {
 		blackBG();
 		$("#log").append("Démarage de la lecture<br />");
 	});
 	
-	/* pendant la lecture de la vidéo */
+	/* pendant la lecture */
 	video.addEventListener("playing", function(){
 		blackBG();
 		$("#log").append("lecture...<br />");
 	});
 
-	/* pause de la vidéo */
+	/* pause */
 	video.addEventListener("pause", function() {
 		var speed = video.currentTime.toFixed(2);
 		
@@ -88,14 +86,13 @@ $(function() {
 		$("#log").append("Pause de la vidéo (" + speed + ")<br />");
 	});
 	
-	/* lorsque la vidéo se termine */
+	/* a la fin de vidéo */
 	video.addEventListener("ended", function() {
 		document.getElementById("pause").innerHTML = 0;
 		blueBG();
 		$('#log').append("Voilà, c'est fini !<br />");
 	});
 	
-	// bookmark d'un moment de la vidéo
 	$("#mark").click(function() {
 		var instant = video.currentTime;
 		
@@ -106,16 +103,13 @@ $(function() {
 	});
 	
 	/* barre de chargement */
-	// avancement de la vidéo au fur et à mesure
 	video.addEventListener('timeupdate', function() {
 		var position = parseInt((video.currentTime/video.duration)*100);
 		$("#timeline").attr("value", position);
 	});
 	
-	// barre de chargement cliquable
 	document.getElementById("timeline").addEventListener('click', function() {
 		var pos = event.offsetX/event.target.clientWidth;
 		video.currentTime = pos*video.duration;
 	});
-	/* ./barre de chargement */
 });
